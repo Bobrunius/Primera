@@ -253,27 +253,17 @@
 /obj/item/proc/get_worn_icon_state(slot_id)
 	return worn_icon_state_by_slot?[slot_id] || worn_icon_state || icon_state
 
-/// Copies default slot states without running the source item's gameplay initialization.
-/proc/copy_initial_worn_icon_states(obj/item/item_type)
-	if(!ispath(item_type, /obj/item) || !item_type::worn_icon_state_by_slot)
-		return null
-	// Dynamic initial() returns a list initializer rather than a usable list.
-	var/source = GLOBAL_PROC_REF(copy_initial_worn_icon_states)
-	SSatoms.map_loader_begin(source)
-	var/obj/item/prototype
-	try
-		prototype = new item_type(null)
-	catch(var/exception/error)
-		SSatoms.map_loader_stop(source)
-		throw error
-	SSatoms.map_loader_stop(source)
-	var/alist/slot_states = prototype.worn_icon_state_by_slot?.Copy()
-	qdel(prototype)
-	return slot_states
+/**
+ * Creates an independent default slot map for this item's type.
+ */
+/obj/item/proc/get_worn_icon_state_by_slot()
+	return null
 // BANDASTATION ADDITION END
 // AI EDIT END
 
 /obj/item/Initialize(mapload)
+	worn_icon_state_by_slot = get_worn_icon_state_by_slot()
+
 	if(attack_verb_continuous)
 		attack_verb_continuous = string_list(attack_verb_continuous)
 	if(attack_verb_simple)
@@ -924,7 +914,7 @@ GAME_VERB_SRC(/obj/item, verb_pickup, oview(1), "Pick up", null)
 	if(HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	callback = CALLBACK(src, PROC_REF(after_throw), callback) //replace their callback with our own
-	. = ..(target, range, speed, thrower, spin, diagonals_first, callback, force, gentle, quickstart = quickstart)
+	. = ..(target, range, speed, thrower, spin, diagonals_first, callback, force, gentle, quickstart = quickstart, throw_datum_typepath = throw_type_path)
 
 /obj/item/proc/after_throw(datum/callback/callback)
 	if (callback) //call the original callback

@@ -89,6 +89,10 @@
 	rendered = wearer.overlays_standing[EARS_LAYER]
 	overlay = rendered[1]
 	TEST_ASSERT_EQUAL(overlay.icon_state, "sec_headset_alt", "A bilateral disguise retained the old one-ear override.")
+	action.update_look(/obj/item/radio/headset/headset_cent/empty)
+	rendered = wearer.overlays_standing[EARS_LAYER]
+	overlay = rendered[1]
+	TEST_ASSERT_EQUAL(overlay.icon_state, "cent_headset_left", "The disguise did not inherit its type's slot-state proc.")
 
 /// A saved changeling appearance keeps its slot states after the source item changes.
 /datum/unit_test/slot_worn_changeling/Run()

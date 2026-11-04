@@ -170,6 +170,7 @@
 #include "cargo_dep_order_locations.dm"
 #include "cargo_selling.dm"
 #include "chain_pull_through_space.dm"
+#include "chameleon.dm"
 #include "changeling.dm"
 #include "chat_filter.dm"
 #include "circuit_component_category.dm"
@@ -260,11 +261,7 @@
 #include "knockoff_component.dm"
 #include "language_key_conflicts.dm"
 #include "language_transfer.dm"
-// AI EDIT START - Include internal affairs role regression tests
-// BANDASTATION ADDITION START - Internal affairs role regression tests
 #include "lawyer_role.dm"
-// BANDASTATION ADDITION END
-// AI EDIT END
 #include "leash.dm"
 #include "lesserform.dm"
 #include "light_replacer.dm"
@@ -398,6 +395,7 @@
 #include "tgui_create_message.dm"
 #include "tile_replacement.dm"
 #include "timer_sanity.dm"
+#include "torn_wall.dm"
 #include "trait_addition_and_removal.dm"
 #include "traitor.dm"
 #include "traitor_mail_content_check.dm"
@@ -480,10 +478,16 @@
 // AI EDIT END
 
 #include "../../../modular_bandastation/weapon/code/ranged/weapon_choice_tests.dm" // BANDASTATION ADDITION - HoS and Blueshield sidearms
+#include "../../../modular_bandastation/weapon/code/ranged/weapon_choice_ui_tests.dm"
 
 #include "../../../modular_bandastation/underclothing/code/tests.dm" // BANDASTATION ADDITION - Removable underclothing
 
 #include "../../../modular_bandastation/uplink_items/code/tests/syndicate_items.dm"
+
+#include "../../../modular_bandastation/objects/code/tests/lighter_lighting.dm"
+
+#include "../../../modular_bandastation/telephones/_defines.dm"
+#include "../../../modular_bandastation/telephones/code/telephone_tests.dm"
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

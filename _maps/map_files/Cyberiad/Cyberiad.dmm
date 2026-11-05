@@ -37611,7 +37611,9 @@
 	name = "Secutity Podpilot Door"
 	},
 /obj/machinery/atmos_shield_gen{
-	dir = 1
+	dir = 1;
+	max_range = 3;
+	component_parts = list(/datum/stock_part/micro_laser/tier2, /datum/stock_part/capacitor)
 	},
 /turf/open/floor/plating,
 /area/station/security/spacepod_pilot)
@@ -67509,7 +67511,9 @@
 	id = "secpods_pilot_door";
 	name = "Secutity Podpilot Door"
 	},
-/obj/machinery/atmos_shield_gen,
+/obj/machinery/atmos_shield_gen{
+	component_parts = list(/datum/stock_part/micro_laser/tier2, /datum/stock_part/capacitor)
+	},
 /turf/open/floor/plating,
 /area/station/security/spacepod_pilot)
 "qox" = (
